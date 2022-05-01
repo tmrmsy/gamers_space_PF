@@ -1,14 +1,11 @@
-# <Gamers watch>
+# <Gamers space>
 
 ## サイト概要
 一緒にゲームをプレイする仲間を募ることができるサイト。
 フレンド同士でメールを使うこともできる。
 
-### サイトテーマ
-オンラインで遊べるゲームに特化している。
-
 ### テーマを選んだ理由
-ゲームで遊んでいる友人がいても同じジャンルでなかったりプラットフォームが違ったりと、一緒に遊べる友人が少ないので仲間を募ることのできるものが
+ゲームで遊んでいる友人がいても同じジャンルでなかったり、プラットフォームが違ったりと一緒に遊べる友人が少ないので仲間を募ることのできるものが
 良いと思いこのテーマにしました。
 
 ### ターゲットユーザ
@@ -20,15 +17,3 @@
 ## 設計書
 機能一覧
 <https://docs.google.com/document/d/10berXzuB2m3JzRVRWEcKM2b_RdOWP34Nt6KKweyoptk/edit?usp=sharing>
-
-## チャレンジ要素一覧
-<https://docs.google.com/spreadsheets/d/1V3mlF68y96oLYSCGVzvQneq0KztpyF7BWuL6StZW-uw/edit?usp=sharing>
-
-## 開発環境
-- OS：Linux(CentOS)
-- 言語：HTML,CSS,JavaScript,Ruby,SQL
-- フレームワーク：Ruby on Rails
-- JSライブラリ：jQuery
-- IDE：Cloud9
-
-## 使用素材
