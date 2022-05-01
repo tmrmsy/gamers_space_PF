@@ -1,8 +1,9 @@
 # <Gamers space>
 
 ## サイト概要
-一緒にゲームをプレイする仲間を募ることができるサイト。
-フレンド同士でメールを使うこともできる。
+一緒にゲームをプレイする仲間を募ることができるSNS。
+DMも送ることができる。
+
 
 ### テーマを選んだ理由
 ゲームで遊んでいる友人がいても同じジャンルでなかったり、プラットフォームが違ったりと一緒に遊べる友人が少ないので仲間を募ることのできるものが
@@ -16,4 +17,4 @@
 
 ## 設計書
 機能一覧
-<https://docs.google.com/document/d/10berXzuB2m3JzRVRWEcKM2b_RdOWP34Nt6KKweyoptk/edit?usp=sharing>
+<https://docs.google.com/spreadsheets/d/1QtHkXzmYTIlxn3raAhgRYBsTYA3vqgflAYeee2_QY-Q/edit?usp=sharing>
