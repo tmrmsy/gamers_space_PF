@@ -1,4 +1,4 @@
-# <Gamers space>
+# Gamers space
 
 ## サイト概要
 一緒にゲームをプレイする仲間を募ることができるSNS。
