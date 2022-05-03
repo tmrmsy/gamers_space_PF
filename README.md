@@ -2,10 +2,10 @@
 
 ## サイト概要
 ゲームの感想や一緒に遊べる仲間を募ることができるコミュニティサイト。
+会員登録することにより、掲示板にゲームの感想やフレンド募集をしたり、  
+サイト内メールで会員同士で交流ができる。 
 
 ### サイトテーマ
-会員登録することにより、掲示板にゲームの感想やフレンド募集をしたり、  
-サイト内メールで会員同士で交流ができる。  
 シンプルに使えて直感的に機能が使えるサイト。  
 
 ### テーマを選んだ理由
@@ -28,6 +28,3 @@
 ## 設計書
 機能一覧
 <https://docs.google.com/spreadsheets/d/1QtHkXzmYTIlxn3raAhgRYBsTYA3vqgflAYeee2_QY-Q/edit?usp=sharing>
-
-## チャレンジ要素一覧
-<https://docs.google.com/spreadsheets/d/1V3mlF68y96oLYSCGVzvQneq0KztpyF7BWuL6StZW-uw/edit?usp=sharing>
