@@ -6,11 +6,31 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <main>
+      <header class="shadow-sm">
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <% if admin_signed_in? %>
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">ユーザー一覧</li>
+              <li class="nav-item">投稿一覧</li>
+              <li class="nav-item"><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %></li>
+            </ul>
+          <% else %>
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">about</li>
+              <li class="nav-item">投稿一覧</li>
+              <li class="nav-item">新規</li>
+              <li class="nav-item">ログアウト</li>
+            </ul>
+          <% end %>
+        </nav>
+      </header>
+    </main>
     <%= yield %>
   </body>
 </html>
