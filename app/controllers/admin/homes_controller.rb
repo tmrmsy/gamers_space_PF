@@ -1,7 +1,5 @@
 class Admin::HomesController < ApplicationController
   def top
-  end
-
-  def about
+    @users = User.all
   end
 end
