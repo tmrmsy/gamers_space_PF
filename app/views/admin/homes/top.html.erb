@@ -13,8 +13,8 @@
         </thead>
         <tbody>
           <% @users.each do |user| %>
-            <td><%= user.id %></td>
-            <td><%= user.name %></td>
+            <td><%= link_to user.id, admin_user_path(user.id) %></td>
+            <td><%= link_to user.name, admin_user_path(user.id) %></td>
             <td><%= user.email %></td>
             <% if user.is_active %>
               <td>有効</td>

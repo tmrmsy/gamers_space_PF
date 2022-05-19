@@ -5,16 +5,17 @@ Rails.application.routes.draw do
   sessions: 'public/sessions'
   }
 
-  namespace :public do
+  scope module: :public do
     resources :posts, only: [:new, :index, :show, :edit]
   end
-  namespace :public do
+  scope module: :public do
     resources :users, only: [:show, :edit]
     get 'users/withdrawal'
   end
-  namespace :public do
+
+  scope module: :public do
     root to: 'homes#top'
-    get 'homes/about'
+    get 'about' => 'homes#about', as: 'about'
   end
 
   namespace :admin do
@@ -22,7 +23,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :posts, only: [:index, :show, :edit]
+    resources :posts, only: [:index, :show, :edit, :destroy]
   end
 
   namespace :admin do
