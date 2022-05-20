@@ -4,6 +4,7 @@
       <h1>Gamers space</h1>
       <p>新規登録は<%= link_to "こちら", new_user_registration_path %></p>
       <p>ログインは<%= link_to "こちら", new_user_session_path %></p>
+      <p>ゲストログインは<%= link_to 'こちら', users_guest_sign_in_path, method: :post %></p>
     </div>
   </div>
 </div>
