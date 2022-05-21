@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :posts, only: [:new, :index, :show, :edit]
   end
   scope module: :public do
-    resources :users, only: [:show, :edit]
+    resources :users, only: [:show, :edit, :update]
     get 'users/withdrawal'
   end
 

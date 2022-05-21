@@ -1,2 +1,17 @@
-<h1>Public::Users#edit</h1>
-<p>Find me in app/views/public/users/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>ユーザー情報編集</h2>
+      <%= form_with model: @user, url: user_path(@user.id) do |f| %>
+      <label>名前</label>
+      <%= f.text_field :name %><br />
+
+      <label>メールアドレス</label>
+      <%= f.email_field :email %><br />
+
+      <%= f.submit '変更を保存', class: 'btn btn-success' %>
+
+      <% end %>
+    </div>
+  </div>
+</div>
