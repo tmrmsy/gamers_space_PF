@@ -13,7 +13,10 @@ class Public::UsersController < ApplicationController
     redirect_to user_path(user.id)
   end
 
-  def withdrawal
+  def destroy
+    user = User.find(params[:id])
+    user.destroy
+    redirect_to root_path
   end
 
   private
