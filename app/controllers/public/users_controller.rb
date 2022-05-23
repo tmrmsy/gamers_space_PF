@@ -1,4 +1,5 @@
 class Public::UsersController < ApplicationController
+  
   def show
     @user = User.find(params[:id])
   end
@@ -18,7 +19,7 @@ class Public::UsersController < ApplicationController
     user.destroy
     redirect_to root_path
   end
-
+  
   private
 
   def user_params

@@ -12,6 +12,9 @@
           <%= @post.content %>
         </div>
       </div>
+      <% if @post.user_id == current_user.id %>
+        <%= link_to "編集する", edit_post_path(@post.id), class: "btn btn-success" %>
+      <% end %>
     </div>
   </div>
 </div>
