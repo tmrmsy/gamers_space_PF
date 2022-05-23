@@ -1,7 +1,17 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      
+      <h2>投稿内容</h2>
+      <div class="card">
+        <div class="card-header">
+          <label><%= @post.title %></label>
+          <span>　<%= @post.user.name %>　さん</span>
+          <span>　<%= @post.created_at.strftime("%Y-%m-%d %H:%M") %></span>
+        </div>
+        <div class="card-body">
+          <%= @post.content %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
