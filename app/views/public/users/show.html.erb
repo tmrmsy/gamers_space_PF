@@ -12,9 +12,24 @@
             <th>メールアドレス</th>
             <td><%= @user.email %></td>
           </tr>
+          <tr>
+            <th>フォロー数</th>
+            <td><%= @user.follower.count %></td>
+          </tr>
+          <tr>
+            <th>フォロワー数</th>
+            <td><%= @user.followed.count %></td>
+          </tr>
         </tbody>
       </table>
       <%= link_to '編集する', edit_user_path(@user.id), class: 'btn btn-success' %>
+      <% unless @user == current_user %>
+        <% if current_user.following?(@user) %>
+          <%= link_to 'フォロー外す', unfollow_path(@user.id), method: :POST, class: "btn btn-danger" %>
+        <% else %>
+          <%= link_to 'フォローする', follow_path(@user.id), method: :POST, class: "btn btn-primary" %>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>

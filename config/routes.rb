@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  scope module: :public do
+    post 'follow/:id' => 'relationships#follow', as: 'follow'
+    post 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow'
+  end
   devise_for :users, skip: [:passwords], controllers: {
   registrations: "public/registrations",
   sessions: 'public/sessions'
@@ -14,6 +18,8 @@ Rails.application.routes.draw do
   end
   scope module: :public do
     resources :users, only: [:show, :edit, :update, :destroy]
+    get 'follow_lists' => 'users#follow_lists', as: 'follow_lists'
+    get 'follower_lists' => 'users#follower_lists', as: 'follower_lists'
   end
 
   scope module: :public do

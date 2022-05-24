@@ -20,6 +20,13 @@ class Public::UsersController < ApplicationController
     redirect_to root_path
   end
   
+  def follow_lists
+    
+  end
+  
+  def follower_lists
+  end
+  
   private
 
   def user_params
