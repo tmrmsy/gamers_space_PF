@@ -6,9 +6,7 @@ class Public::PostsController < ApplicationController
   def create
     post = Post.new(post_params)
     post.user_id = current_user.id
-    tag_list = params[:post][:name].split(',')
     if post.save
-      post.save_tag(tag_list)
       flash[:notice] = "投稿できました！"
       redirect_to post_path(post.id)
     else
@@ -19,7 +17,9 @@ class Public::PostsController < ApplicationController
 
   def index
     @posts = Post.all
-    #@tag_lists = Tag.all
+    if params[:tag_name]
+      @posts = Post.tagged_with("#{params[:tag_name]}")
+    end
   end
 
   def show
@@ -40,6 +40,7 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :content, :user_id)
+    params.require(:post).permit(:title, :content, :user_id, :tag_list)
   end
+
 end

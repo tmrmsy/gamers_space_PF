@@ -11,6 +11,11 @@
         <div class="card-body">
           <%= @post.content %>
         </div>
+        <div class="card-footer">
+          <% @post.tag_list.each do |tag| %>
+            <%= link_to tag, posts_path(tag_name: tag), class: "btn btn-info" %>
+          <% end %>
+        </div>
       </div>
       <% if @post.user_id == current_user.id %>
         <%= link_to "編集する", edit_post_path(@post.id), class: "btn btn-success" %>
