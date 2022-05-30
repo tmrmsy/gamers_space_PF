@@ -16,6 +16,15 @@ Rails.application.routes.draw do
   scope module: :public do
     resources :posts
   end
+
+  scope module: :public do
+    resources :messages, only: [:create]
+  end
+
+  scope module: :public do
+    resources :rooms, only: [:create, :show]
+  end
+
   scope module: :public do
     resources :users, only: [:show, :edit, :update, :destroy]
     get 'follow_lists' => 'users#follow_lists', as: 'follow_lists'

@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>メッセージ</h2>
+      <h4>参加者</h4>
+      <% @entries.each do |entrie| %>
+        <p><%= entrie.user.name %> さん</p>
+      <% end %>
+
+      <hr>
+      <% if @messages.present? %>
+        <% @messages.each do |message| %>
+          <strong><%= message.content %></strong>
+          <small>by <%= message.user.name %> さん</small><br />
+        <% end %>
+      <% else %>
+        <h3 class="text-center">メッセージはまだありません</h3>
+      <% end %>
+
+      <%= form_with model: @message do |f| %>
+        <div class="form-group">
+          <%= f.text_field :content, :placeholder => "メッセージを入力して下さい", class: "form-control" %>
+          <%= f.hidden_field :room_id, :value => @room.id %><br />
+        </div>
+        <div class="form-group">
+          <%= f.submit '投稿する', class: "btn btn-success" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
