@@ -25,8 +25,4 @@ class Public::RoomsController < ApplicationController
 
   end
 
-private
-
-
-
 end

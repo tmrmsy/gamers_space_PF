@@ -34,7 +34,7 @@
         <% end %>
       <% end %>
 
-      <% unless @user.id == current_user.id %>
+      <% unless @user == current_user %>
         <% if @is_room == true %>
           <%= link_to 'メッセージへ', room_path(@room_id), class: "btn btn-dark" %>
         <% else %>
@@ -42,7 +42,7 @@
             <%= fields_for @entry do |e| %>
               <%= e.hidden_field :user_id, value: @user.id %>
             <% end %>
-            <% f.submit 'メッセージを送る', class: "btn btn-dark" %>
+            <%= f.submit 'メッセージを送る', class: "btn btn-dark" %>
           <% end %>
         <% end %>
       <% end %>
