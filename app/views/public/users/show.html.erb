@@ -33,7 +33,20 @@
           <%= link_to 'フォローする', follow_path(@user.id), method: :POST, class: "btn btn-primary" %>
         <% end %>
       <% end %>
-      
+
+      <% unless @user.id == current_user.id %>
+        <% if @is_room == true %>
+          <%= link_to 'メッセージへ', room_path(@room_id), class: "btn btn-dark" %>
+        <% else %>
+          <%= form_with model: @room do |f| %>
+            <%= fields_for @entry do |e| %>
+              <%= e.hidden_field :user_id, value: @user.id %>
+            <% end %>
+            <% f.submit 'メッセージを送る', class: "btn btn-dark" %>
+          <% end %>
+        <% end %>
+      <% end %>
+
     </div>
   </div>
 </div>

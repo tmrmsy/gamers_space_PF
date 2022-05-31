@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   end
 
   scope module: :public do
-    resources :rooms, only: [:create, :show]
+    resources :rooms, only: [:index, :create, :show]
   end
 
   scope module: :public do

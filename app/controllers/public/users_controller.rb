@@ -2,20 +2,18 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @current_user_entry = Entry.where(user_id: current_user.id)
-    @user_entry = Entry.where(user_id: @user.id)
-    if @user.id == current_user.id
-    else
-      @current_user_entry.each do |current_user_e|
-        @user_entry.each do |user_e|
-          if current_user_e.room_id == user_e.room_id then
+    @current_entry = Entry.where(user_id: current_user.id)
+    @another_entry = Entry.where(user_id: @user.id)
+    unless @user.id == current_user.id
+      @current_entry.each do |current|
+        @another_entry.each do |another|
+          if current.room_id == another.room_id
             @is_room = true
-            @room_id = current_user_e.room_id
+            @room_id = current.room_id
           end
         end
       end
-      if @is_room
-      else
+      unless @is_room
         @room = Room.new
         @entry = Entry.new
       end
