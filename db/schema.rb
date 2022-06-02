@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_31_151818) do
+ActiveRecord::Schema.define(version: 2022_06_02_141423) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -48,6 +48,16 @@ ActiveRecord::Schema.define(version: 2022_05_31_151818) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["room_id"], name: "index_messages_on_room_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "post_comments", force: :cascade do |t|
+    t.text "comment", null: false
+    t.integer "user_id", null: false
+    t.integer "post_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_post_comments_on_post_id"
+    t.index ["user_id"], name: "index_post_comments_on_user_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -119,5 +129,7 @@ ActiveRecord::Schema.define(version: 2022_05_31_151818) do
   add_foreign_key "entries", "users"
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
+  add_foreign_key "post_comments", "posts"
+  add_foreign_key "post_comments", "users"
   add_foreign_key "taggings", "tags"
 end

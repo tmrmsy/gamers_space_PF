@@ -14,7 +14,9 @@ Rails.application.routes.draw do
   end
 
   scope module: :public do
-    resources :posts
+    resources :posts do
+      resources :post_comments, only: [:create, :destroy]
+    end
   end
 
   scope module: :public do
