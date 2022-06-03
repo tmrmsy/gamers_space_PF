@@ -36,13 +36,11 @@ class Public::UsersController < ApplicationController
     redirect_to root_path
   end
 
-  def follow_lists
-
+  def favorites
+    favorites = Favorite.where(user_id: current_user).pluck(:post_id)
+    @favorite_posts = Post.find(favorites)
   end
-
-  def follower_lists
-  end
-
+  
   private
 
   def user_params

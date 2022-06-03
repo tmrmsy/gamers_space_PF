@@ -30,6 +30,7 @@ Rails.application.routes.draw do
 
   scope module: :public do
     resources :users, only: [:show, :edit, :update, :destroy]
+    get 'favorites' => 'users#favorites', as: 'favorites'
     get 'follow_lists' => 'users#follow_lists', as: 'follow_lists'
     get 'follower_lists' => 'users#follower_lists', as: 'follower_lists'
   end

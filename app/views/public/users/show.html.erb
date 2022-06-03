@@ -24,8 +24,8 @@
           </tr>
         </tbody>
       </table>
+      <%= link_to 'いいね一覧', favorites_path, class: 'btn btn-info' %>
       <%= link_to '編集する', edit_user_path(@user.id), class: 'btn btn-success' %>
-
       <% unless @user == current_user %>
         <% if current_user.following?(@user) %>
           <%= link_to 'フォロー外す', unfollow_path(@user.id), method: :POST, class: "btn btn-danger" %>
