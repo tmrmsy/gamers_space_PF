@@ -1,16 +1,39 @@
 Rails.application.routes.draw do
 
+  scope module: :public do
+    post 'follow/:id' => 'relationships#follow', as: 'follow'
+    post 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow'
+  end
   devise_for :users, skip: [:passwords], controllers: {
   registrations: "public/registrations",
   sessions: 'public/sessions'
   }
 
-  scope module: :public do
-    resources :posts, only: [:new, :index, :show, :edit]
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'public/sessions#guest_sign_in'
   end
+
   scope module: :public do
-    resources :users, only: [:show, :edit]
-    get 'users/withdrawal'
+    resources :posts do
+      resources :post_comments, only: [:create, :destroy]
+      resource :favorites, only: [:create, :destroy]
+    end
+    get 'search' => 'posts#search', as: 'search'
+  end
+
+  scope module: :public do
+    resources :messages, only: [:create]
+  end
+
+  scope module: :public do
+    resources :rooms, only: [:index, :create, :show]
+  end
+
+  scope module: :public do
+    resources :users, only: [:show, :edit, :update, :destroy]
+    get 'favorites' => 'users#favorites', as: 'favorites'
+    get 'follow_lists' => 'users#follow_lists', as: 'follow_lists'
+    get 'follower_lists' => 'users#follower_lists', as: 'follower_lists'
   end
 
   scope module: :public do

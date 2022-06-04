@@ -1,2 +1,57 @@
-<h1>Public::Posts#show</h1>
-<p>Find me in app/views/public/posts/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>投稿内容</h2>
+      <div class="card">
+        <div class="card-header">
+          <label><%= @post.title %></label>
+          <span>　<%= @post.user.name %>　さん</span>
+          <span>　<%= @post.created_at.strftime("%Y-%m-%d %H:%M") %></span>
+        </div>
+        <div class="card-body">
+          <%= @post.content %>
+        </div>
+        <div class="card-footer">
+          <% @post.tag_list.each do |tag| %>
+            <%= link_to tag, posts_path(tag_name: tag), class: "btn btn-info" %>
+          <% end %>
+          <% if @post.favorited_by?(current_user) %>
+            <p>
+              <%= link_to post_favorites_path(@post), method: :delete do %>
+                <span><i class="fa-solid fa-heart" style="color:red;"></i><%= @post.favorites.count %> いいね</span>
+              <% end %>
+            </p>
+            <% else %>
+            <p>
+              <%= link_to post_favorites_path(@post), method: :post do %>
+                <span><i class="fa-solid fa-heart"></i><%= @post.favorites.count %> いいね</span>
+              <% end %>
+            </p>
+          <% end %>
+        </div>
+      </div>
+      <% if @post.user_id == current_user.id %>
+        <%= link_to "編集する", edit_post_path(@post), class: "btn btn-success" %>
+        <%= link_to "削除する", post_path(@post), method: :delete, class: 'btn btn-danger', "data-confirm" => "削除します？" %>
+      <% end %>
+
+      <div>
+        <p>コメント件数：<%= @post.post_comments.count %></p>
+        <% @post.post_comments.each do |post_comment| %>
+          <p><strong><%= post_comment.comment %></strong>
+          <small>by <%= post_comment.user.name %> さん</small>
+          <small><%= post_comment.created_at.strftime("%Y-%m-%d %H:%M") %></small>
+          <% if post_comment.user == current_user %>
+            <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, class: 'btn-sm btn-danger', "data-confirm" => "削除します？" %>
+          <% end %></p>
+        <% end %>
+      </div>
+      <div class="form-group">
+        <%= form_with model: [@post, @post_comment] do |f| %>
+          <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに", class: "form-control" %>
+          <%= f.submit "送信する", class: 'btn btn-success' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

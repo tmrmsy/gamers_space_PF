@@ -1,2 +1,52 @@
-<h1>Public::Users#show</h1>
-<p>Find me in app/views/public/users/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>ユーザー詳細</h2>
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>名前</th>
+            <td><%= @user.name %></td>
+          </tr>
+          <% if current_user == @user %>
+            <tr>
+              <th>メールアドレス</th>
+              <td><%= @user.email %></td>
+            </tr>
+          <% end %>
+          <tr>
+            <th>フォロー数</th>
+            <td><%= link_to @user.follower.count, follow_lists_path %></td>
+          </tr>
+          <tr>
+            <th>フォロワー数</th>
+            <td><%= link_to @user.followed.count, follower_lists_path %></td>
+          </tr>
+        </tbody>
+      </table>
+      <%= link_to 'いいね一覧', favorites_path, class: 'btn btn-info' %>
+      <%= link_to '編集する', edit_user_path(@user.id), class: 'btn btn-success' %>
+      <% unless @user == current_user %>
+        <% if current_user.following?(@user) %>
+          <%= link_to 'フォロー外す', unfollow_path(@user.id), method: :POST, class: "btn btn-danger" %>
+        <% else %>
+          <%= link_to 'フォローする', follow_path(@user.id), method: :POST, class: "btn btn-primary" %>
+        <% end %>
+      <% end %>
+
+      <% unless @user == current_user %>
+        <% if @is_room == true %>
+          <%= link_to 'メッセージへ', room_path(@room_id), class: "btn btn-dark" %>
+        <% else %>
+          <%= form_with model: @room do |f| %>
+            <%= fields_for @entry do |e| %>
+              <%= e.hidden_field :user_id, value: @user.id %>
+            <% end %>
+            <%= f.submit 'メッセージを送る', class: "btn btn-dark" %>
+          <% end %>
+        <% end %>
+      <% end %>
+
+    </div>
+  </div>
+</div>
