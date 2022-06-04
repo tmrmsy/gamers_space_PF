@@ -6,8 +6,13 @@ class Post < ApplicationRecord
   has_many :post_comments, dependent: :destroy
 
 
-def favorited_by?(user)
-  favorites.exists?(user_id: user.id)
-end
+  def favorited_by?(user)
+    favorites.exists?(user_id: user.id)
+  end
+
+  def self.search(search)
+    return Post.all unless search
+    Post.where(['content LIKE ?', "%#{search}%"])
+  end
 
 end

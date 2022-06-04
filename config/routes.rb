@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       resources :post_comments, only: [:create, :destroy]
       resource :favorites, only: [:create, :destroy]
     end
+    get 'search' => 'posts#search', as: 'search'
   end
 
   scope module: :public do

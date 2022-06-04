@@ -43,6 +43,10 @@ class Public::PostsController < ApplicationController
   post.destroy
   redirect_to posts_path
   end
+  
+  def search
+    @posts = Post.search(params[:search])
+  end
 
   private
 
