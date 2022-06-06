@@ -42,11 +42,14 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :users, only: [:show, :edit, :update]
+    resources :users, only: [:show, :edit, :update, :destroy]
   end
 
   namespace :admin do
-    resources :posts, only: [:index, :show, :edit, :destroy]
+    resources :posts, only: [:index, :show, :destroy] do
+      resources :post_comments, only: [:destroy]
+    end
+    get 'search' => 'posts#search', as: 'search'
   end
 
   namespace :admin do

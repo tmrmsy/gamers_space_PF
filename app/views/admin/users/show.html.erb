@@ -12,17 +12,9 @@
             <th>メールアドレス</th>
             <td><%= @user.email %></td>
           </tr>
-          <tr>
-            <th>ステータス</th>
-            <% if @user.is_active %>
-              <td>有効</td>
-            <% else %>
-              <td>退会</td>
-            <% end %>
-          </tr>
         </tbody>
       </table>
-      <%= link_to "編集する", edit_admin_user_path(@user.id), class: 'btn btn-success' %>
+      <%= link_to "編集する", edit_admin_user_path(@user), class: 'btn btn-success' %>
 
     </div>
   </div>
