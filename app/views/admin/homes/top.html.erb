@@ -8,7 +8,6 @@
             <th>ユーザーID</th>
             <th>ユーザー名</th>
             <th>メールアドレス</th>
-            <th>ステータス</th>
           </tr>
         </thead>
         <tbody>
@@ -17,13 +16,9 @@
               <td><%= link_to user.id, admin_user_path(user.id) %></td>
               <td><%= link_to user.name, admin_user_path(user.id) %></td>
               <td><%= user.email %></td>
-              <% if user.is_active %>
-                <td>有効</td>
-              <% else %>
-                <td>退会</td>
-              <% end %>
-            <% end %>
-          </tr>
+              <td><%= link_to "削除する", admin_user_path(user), method: :delete, class: 'btn btn-danger', "data-confirm" => "削除します？" %></td>
+            </tr>
+          <% end %>
         </tbody>
       </table>
     </div>
