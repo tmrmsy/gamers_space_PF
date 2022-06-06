@@ -9,10 +9,12 @@ class Public::PostsController < ApplicationController
     post = Post.new(post_params)
     post.user_id = current_user.id
     if post.save
-      flash[:notice] = "投稿できました！"
+      flash[:success] = "Submitted successfully."
       redirect_to post_path(post.id)
     else
-      render :new
+      #flash.now[:danger] = "投稿に失敗しました"
+      redirect_to new_post_path
+      #render :new
     end
 
   end

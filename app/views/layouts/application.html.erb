@@ -49,11 +49,14 @@
         </div>
       </nav>
     </header>
-    
+
     <main class="mb-5">
+      <% flash.each do |message_type, message| %>
+        <h5 class="text-center text-success"><%= message %></h5>
+      <% end %>
       <%= yield %>
     </main>
-    
+
     <footer class="fixed-bottom bg-dark text-white text-center">
       <div class="container">
         <div class="row">
