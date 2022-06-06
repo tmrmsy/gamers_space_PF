@@ -2,9 +2,11 @@
 <html>
   <head>
     <title>GamersWatch</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <link href="https://use.fontawesome.com/releases/v6.1.1/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.0.10/font-awesome-animation.css" type="text/css" media="all" />
@@ -17,32 +19,49 @@
     <main>
       <header class="shadow-sm">
         <nav class="navbar navbar-expand-lg navbar-light">
-          <% if admin_signed_in? %>
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item"><%= link_to "ユーザー一覧", admin_root_path, class: 'nav-link text-dark' %></li>
-              <li class="nav-item"><%= link_to "投稿一覧", admin_posts_path, class: 'nav-link text-dark' %></li>
-              <li class="nav-item"><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %></li>
-            </ul>
-          <% elsif user_signed_in? %>
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item"><%= link_to "About", about_path, class: 'nav-link text-dark' %></li>
-              <li class="nav-item"><%= link_to "マイページ", user_path(current_user.id), class: 'nav-link text-dark' %></li>
-              <li class="nav-item"><%= link_to "メッセージ", rooms_path, class: 'nav-link text-dark' %></li>
-              <li class="nav-item"><%= link_to "投稿一覧", posts_path, class: 'nav-link text-dark' %></li>
-              <li class="nav-item"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %></li>
-            </ul>
-          <% else %>
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item"><%= link_to "Top", root_path, class: 'nav-link text-dark' %></li>
-              <li class="nav-item"><%= link_to "About", about_path, class: 'nav-link text-dark' %></li>
-              <li class="nav-item"><%= link_to "投稿一覧", posts_path, class: 'nav-link text-dark' %></li>
-              <li class="nav-item"><%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark' %></li>
-              <li class="nav-item"><%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark' %></li>
-            </ul>
-          <% end %>
+          <a class="navbar-brand p-3" href="/"><%= image_tag('logo (1).png') %></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <% if admin_signed_in? %>
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><%= link_to "ユーザー一覧", admin_root_path, class: 'nav-link text-dark' %></li>
+                <li class="nav-item"><%= link_to "投稿一覧", admin_posts_path, class: 'nav-link text-dark' %></li>
+                <li class="nav-item"><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %></li>
+              </ul>
+            <% elsif user_signed_in? %>
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><%= link_to "About", about_path, class: 'nav-link text-dark' %></li>
+                <li class="nav-item"><%= link_to "マイページ", user_path(current_user.id), class: 'nav-link text-dark' %></li>
+                <li class="nav-item"><%= link_to "メッセージ", rooms_path, class: 'nav-link text-dark' %></li>
+                <li class="nav-item"><%= link_to "投稿一覧", posts_path, class: 'nav-link text-dark' %></li>
+                <li class="nav-item"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %></li>
+              </ul>
+            <% else %>
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><%= link_to "Top", root_path, class: 'nav-link text-dark' %></li>
+                <li class="nav-item"><%= link_to "About", about_path, class: 'nav-link text-dark' %></li>
+                <li class="nav-item"><%= link_to "投稿一覧", posts_path, class: 'nav-link text-dark' %></li>
+                <li class="nav-item"><%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark' %></li>
+                <li class="nav-item"><%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark' %></li>
+              </ul>
+            <% end %>
+          </div>
         </nav>
       </header>
+    <main>
+      <%= yield %>
     </main>
-    <%= yield %>
+    <footer class="fixed-bottom bg-dark text-white text-center pt-5 pb-4">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <p>ゲーマー達の集いの場</p>
+            <%= image_tag('logo (1).png') %>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
