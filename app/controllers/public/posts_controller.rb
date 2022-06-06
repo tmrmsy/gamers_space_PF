@@ -20,9 +20,9 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.page(params[:page]).order(created_at: :desc)
     if params[:tag_name]
-      @posts = Post.tagged_with("#{params[:tag_name]}")
+      @posts = Post.tagged_with("#{params[:tag_name]}").page(params[:page]).order(created_at: :desc)
     end
   end
 
@@ -30,6 +30,7 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post_tags = @post.tags
     @post_comment = PostComment.new
+    @post_comments = @post.post_comments.page(params[:page]).order(created_at: :desc)
   end
 
   def edit

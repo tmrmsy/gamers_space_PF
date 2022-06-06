@@ -16,11 +16,12 @@
               <td><%= link_to user.id, admin_user_path(user.id) %></td>
               <td><%= link_to user.name, admin_user_path(user.id) %></td>
               <td><%= user.email %></td>
-              <td><%= link_to "削除する", admin_user_path(user), method: :delete, class: 'btn btn-danger', "data-confirm" => "削除します？" %></td>
+              <td><%= link_to "削除", admin_user_path(user), method: :delete, class: 'btn btn-danger', "data-confirm" => "削除します？" %></td>
             </tr>
           <% end %>
         </tbody>
       </table>
+      <%= paginate @users %>
     </div>
   </div>
 </div>

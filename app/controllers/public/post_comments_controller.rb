@@ -8,7 +8,7 @@ class Public::PostCommentsController < ApplicationController
     if comment.save
       redirect_to post_path(post)
     else
-      redirect post_path(post)
+      redirect_to post_path(post)
     end
   end
 
