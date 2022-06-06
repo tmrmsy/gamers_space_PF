@@ -8,31 +8,36 @@
             <th>名前</th>
             <td><%= @user.name %></td>
           </tr>
-          <% if current_user == @user %>
+          <% if @user == current_user %>
             <tr>
               <th>メールアドレス</th>
               <td><%= @user.email %></td>
             </tr>
+            <tr>
+              <th>フォロー数</th>
+              <td><%= link_to @user.follower.count, follow_lists_path %></td>
+            </tr>
+            <tr>
+              <th>フォロワー数</th>
+              <td><%= link_to @user.followed.count, follower_lists_path %></td>
+            </tr>
           <% end %>
-          <tr>
-            <th>フォロー数</th>
-            <td><%= link_to @user.follower.count, follow_lists_path %></td>
-          </tr>
-          <tr>
-            <th>フォロワー数</th>
-            <td><%= link_to @user.followed.count, follower_lists_path %></td>
-          </tr>
+          
         </tbody>
       </table>
-      <%= link_to 'いいね一覧', favorites_path, class: 'btn btn-info' %>
-      <%= link_to '編集する', edit_user_path(@user.id), class: 'btn btn-success' %>
-      <% unless @user == current_user %>
-        <% if current_user.following?(@user) %>
-          <%= link_to 'フォロー外す', unfollow_path(@user.id), method: :POST, class: "btn btn-danger" %>
-        <% else %>
-          <%= link_to 'フォローする', follow_path(@user.id), method: :POST, class: "btn btn-primary" %>
+      <% if user_signed_in? %>
+        <% if @user == current_user %>
+          <%= link_to 'いいね一覧', favorites_path, class: 'btn btn-info' %>
+          <%= link_to '編集する', edit_user_path(@user.id), class: 'btn btn-success' %>
         <% end %>
-      <% end %>
+
+        <% unless @user == current_user %>
+          <% if current_user.following?(@user) %>
+            <%= link_to 'フォロー外す', unfollow_path(@user.id), method: :POST, class: "btn btn-danger" %>
+          <% else %>
+            <%= link_to 'フォローする', follow_path(@user.id), method: :POST, class: "btn btn-primary" %>
+          <% end %>
+        <% end %>
 
       <% unless @user == current_user %>
         <% if @is_room == true %>
@@ -46,6 +51,8 @@
           <% end %>
         <% end %>
       <% end %>
+      
+    <% end %>
 
     </div>
   </div>

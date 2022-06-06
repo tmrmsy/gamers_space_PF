@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   end
 
   scope module: :public do
-    resources :messages, only: [:create]
+    resources :messages, only: [:create, :destroy]
   end
 
   scope module: :public do

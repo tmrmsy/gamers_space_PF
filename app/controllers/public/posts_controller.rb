@@ -1,4 +1,6 @@
 class Public::PostsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
+
   def new
     @post = Post.new
   end
@@ -37,13 +39,13 @@ class Public::PostsController < ApplicationController
     post.update(post_params)
     redirect_to post_path(post.id)
   end
-  
+
   def destroy
   post = Post.find(params[:id])
   post.destroy
   redirect_to posts_path
   end
-  
+
   def search
     @posts = Post.search(params[:search])
   end

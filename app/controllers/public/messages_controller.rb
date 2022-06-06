@@ -1,4 +1,5 @@
 class Public::MessagesController < ApplicationController
+  before_action :authenticate_user!
 
   def create
     message = Message.new(message_params)
@@ -8,6 +9,12 @@ class Public::MessagesController < ApplicationController
     else
       redirect_back(fallback_location: root_path)
     end
+  end
+
+  def destroy
+    message = Message.find(params[:id])
+    message.destroy
+    redirect_to room_path(message.room)
   end
 
   private
