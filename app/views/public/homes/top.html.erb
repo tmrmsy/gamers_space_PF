@@ -1,14 +1,16 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12 text-center">
-      <h1>Gamers space</h1>
-      <% if admin_signed_in? || user_signed_in? %>
-        
+      <h1>Gamers Space</h1>
+      <% if user_signed_in? %>
+        <div class="text-center">
+          <p>ようこそ！</p>
+          <p><strong><%= current_user.name %></strong> さん</p>
+        </div>
       <% else %>
         <p>新規登録は<%= link_to "こちら", new_user_registration_path %></p>
         <p>ログインは<%= link_to "こちら", new_user_session_path %></p>
         <p>ゲストログインは<%= link_to "こちら", users_guest_sign_in_path, method: :post %></p>
-        <p>管理者ログインは<%= link_to "こちら", new_admin_session_path %></p>
       <% end %>
     </div>
   </div>
