@@ -12,11 +12,8 @@ class Public::PostsController < ApplicationController
       flash[:success] = "Submitted successfully."
       redirect_to post_path(post.id)
     else
-      #flash.now[:danger] = "投稿に失敗しました"
       redirect_to new_post_path
-      #render :new
     end
-
   end
 
   def index
