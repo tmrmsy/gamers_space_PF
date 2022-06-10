@@ -6,11 +6,6 @@
         <%= link_to "新規投稿", new_post_path, class: "btn btn-primary" %>
       <% end %>
 
-      <%= form_tag(search_path,:method => 'get') do %>
-        <%= text_field_tag :search %>
-        <%= submit_tag 'Search', :name => nil %>
-      <% end %>
-
       <table class="table">
         <thead>
           <tr>
@@ -26,9 +21,11 @@
               <td><%= post.created_at.strftime("%Y-%m-%d %H:%M") %></td>
               <td><%= link_to post.title, post_path(post.id) %></td>
               <td>
-                <% post.tag_list.each do |tag| %>
-                  <%= link_to tag, posts_path(tag_name: tag), class: "btn btn-info" %>
-                <% end %>
+                <i class="fas fa-tag">
+                  <% post.tags.each do |tag| %>
+                    <%= link_to tag.name, posts_path(tag_id: tag.id) %>
+                  <% end %>
+                </i>
               </td>
               <td><%= link_to post.user.name, user_path(post.user_id) %></td>
             </tr>

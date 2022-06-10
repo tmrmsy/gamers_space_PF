@@ -3,14 +3,17 @@ class Admin::PostsController < ApplicationController
 
   def index
     @posts = Post.page(params[:page]).order(created_at: :desc)
-    if params[:tag_name]
-      @posts = Post.tagged_with("#{params[:tag_name]}").page(params[:page]).order(created_at: :desc)
+    @tag_list = Tag.all
+    if params[:tag_id]
+      tag = Tag.find(params[:tag_id])
+      @posts = tag.posts.page(params[:page]).order(created_at: :desc)
     end
   end
 
-  def show
+   def show
     @post = Post.find(params[:id])
     @post_tags = @post.tags
+    @post_comment = PostComment.new
     @post_comments = @post.post_comments.page(params[:page]).order(created_at: :desc)
   end
 

@@ -8,7 +8,9 @@ class Public::PostsController < ApplicationController
   def create
     post = Post.new(post_params)
     post.user_id = current_user.id
+    tag_list = params[:post][:name].split(',')
     if post.save
+      post.save_tag(tag_list)
       flash[:success] = "Submitted successfully."
       redirect_to post_path(post.id)
     else
@@ -18,8 +20,10 @@ class Public::PostsController < ApplicationController
 
   def index
     @posts = Post.page(params[:page]).order(created_at: :desc)
-    if params[:tag_name]
-      @posts = Post.tagged_with("#{params[:tag_name]}").page(params[:page]).order(created_at: :desc)
+    @tag_list = Tag.all
+    if params[:tag_id]
+      tag = Tag.find(params[:tag_id])
+      @posts = tag.posts.page(params[:page]).order(created_at: :desc)
     end
   end
 
@@ -32,12 +36,23 @@ class Public::PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    @tag_list = @post.tags.pluck(:name).join(',')
   end
 
   def update
     post = Post.find(params[:id])
-    post.update(post_params)
-    redirect_to post_path(post.id)
+    tag_list = params[:post][:name].split(',')
+    if post.update(post_params)
+      old_relations = PostTag.where(post_id: post.id)
+      old_relations.each do |relation|
+        relation.delete
+      end
+      post.save_tag(tag_list)
+      flash[:success] = "Submitted successfully."
+      redirect_to post_path(post)
+    else
+      redirect_to edit_post_path(post)
+    end
   end
 
   def destroy

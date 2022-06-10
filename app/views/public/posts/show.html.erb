@@ -12,9 +12,13 @@
           <%= @post.content %>
         </div>
         <div class="card-footer">
-          <% @post.tag_list.each do |tag| %>
-            <%= link_to tag, posts_path(tag_name: tag), class: "btn btn-info" %>
-          <% end %>
+          <i class="fas fa-tag">
+            <% @post_tags.each do |tag| %>
+              <%= link_to posts_path(tag_id: tag) do %>
+                <%= tag.name %><%= "(#{tag.posts.count})" %>
+              <% end %>
+            <% end %>
+          </i>
 
           <% if user_signed_in? %>
             <% if @post.favorited_by?(current_user) %>
