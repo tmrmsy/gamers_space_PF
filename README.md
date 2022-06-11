@@ -28,3 +28,8 @@
 ## 設計書
 機能一覧
 <https://docs.google.com/spreadsheets/d/1QtHkXzmYTIlxn3raAhgRYBsTYA3vqgflAYeee2_QY-Q/edit?usp=sharing>
+
+ER図
+<https://drive.google.com/file/d/1_r1kqqrjakN-i5_5Q0p0k8Q9idn7m4Hc/view?usp=sharing>
+
+
