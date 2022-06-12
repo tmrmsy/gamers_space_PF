@@ -6,6 +6,11 @@
         <%= link_to "新規投稿", new_post_path, class: "btn btn-primary" %>
       <% end %>
 
+      <%= form_tag(search_path,:method => 'get') do %>
+        <%= text_field_tag :search %>
+        <%= submit_tag 'Search', :name => nil %>
+      <% end %>
+
       <table class="table">
         <thead>
           <tr>

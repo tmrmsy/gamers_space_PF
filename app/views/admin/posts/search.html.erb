@@ -24,9 +24,11 @@
               <td><%= post.created_at.strftime("%Y-%m-%d %H:%M") %></td>
               <td><%= link_to post.title, admin_post_path(post) %></td>
               <td>
-                <% post.tag_list.each do |tag| %>
-                  <%= link_to tag, admin_posts_path(tag_name: tag), class: "btn btn-info" %>
-                <% end %>
+                <i class="fas fa-tag">
+                  <% post.tags.each do |tag| %>
+                    <%= link_to tag.name, posts_path(tag_id: tag.id) %>
+                  <% end %>
+                </i>
               </td>
               <td><%= link_to post.user.name, admin_user_path(post.user_id) %></td>
               <td><%= link_to '削除', admin_post_path(post), method: :delete, class: 'btn btn-danger', "data-confirm" => "本当に削除しますか？" %></td>
@@ -34,6 +36,7 @@
           <% end %>
         </tbody>
       </table>
+      <%= paginate @posts %>
     </div>
   </div>
 </div>
