@@ -44,20 +44,8 @@
           <%= link_to "削除する", post_path(@post), method: :delete, class: 'btn btn-danger', "data-confirm" => "削除します？" %>
         <% end %>
       <% end %>
+      <%= render '/template/comment', post: @post, post_comments: @post_comments %>
 
-      <div>
-        <p>コメント件数：<%= @post.post_comments.count %></p>
-        <% @post_comments.each do |post_comment| %>
-          <p><strong><%= post_comment.comment %></strong>
-          <small>by <%= post_comment.user.name %> さん</small>
-          <small><%= post_comment.created_at.strftime("%Y-%m-%d %H:%M") %></small>
-          <% if user_signed_in? %>
-            <% if post_comment.user == current_user %>
-              <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, class: 'btn-sm btn-danger', "data-confirm" => "削除します？" %>
-            <% end %></p>
-          <% end %>
-        <% end %>
-      </div>
       <%= paginate @post_comments %>
       <% if user_signed_in? %>
         <div class="form-group">
