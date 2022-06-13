@@ -25,6 +25,14 @@
 - 固定で遊べる仲間を探している時。
 - 遊びたいゲームがなくなった時に新しいゲームを探したい時。
 
+
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
+
 ## 設計書
 機能一覧. 
 <https://docs.google.com/spreadsheets/d/1QtHkXzmYTIlxn3raAhgRYBsTYA3vqgflAYeee2_QY-Q/edit?usp=sharing>
