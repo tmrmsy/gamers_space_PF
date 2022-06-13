@@ -6,8 +6,8 @@ class Public::UsersController < ApplicationController
     if user_signed_in?
       @current_entry = Entry.where(user_id: current_user.id)
       @another_entry = Entry.where(user_id: @user.id)
-        unless @user.id == current_user.id
-          @current_entry.each do |current|
+      unless @user.id == current_user.id
+        @current_entry.each do |current|
           @another_entry.each do |another|
             if current.room_id == another.room_id
               @is_room = true
@@ -42,6 +42,12 @@ class Public::UsersController < ApplicationController
   def favorites
     favorites = Favorite.where(user_id: current_user).pluck(:post_id)
     @favorite_posts = Post.find(favorites)
+  end
+
+  def follow_lists
+  end
+
+  def follower_lists
   end
 
   private

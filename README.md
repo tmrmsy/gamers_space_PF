@@ -26,10 +26,14 @@
 - 遊びたいゲームがなくなった時に新しいゲームを探したい時。
 
 ## 設計書
-機能一覧
+機能一覧. 
 <https://docs.google.com/spreadsheets/d/1QtHkXzmYTIlxn3raAhgRYBsTYA3vqgflAYeee2_QY-Q/edit?usp=sharing>
 
-ER図
+ER図. 
 <https://drive.google.com/file/d/1_r1kqqrjakN-i5_5Q0p0k8Q9idn7m4Hc/view?usp=sharing>
 
+テーブル定義書. 
+<https://docs.google.com/spreadsheets/d/1xHzSoszH9LFQkuQJl4CQOcnG1QryXbG9Jow-tBlQsvU/edit?usp=sharing>
 
+アプリケーション詳細設計. 
+<https://docs.google.com/spreadsheets/d/1Ihglty-CxQOtNXECpTQa2gV4Hg1LHNg_6xe016Uqr7o/edit?usp=sharing>
