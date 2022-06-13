@@ -3,6 +3,7 @@
     <div class="col-md-12">
       <h2>投稿一覧</h2>
       <%= render 'list', posts: @posts %>
+      <%= paginate @posts %>
     </div>
   </div>
 </div>

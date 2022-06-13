@@ -3,6 +3,7 @@
     <div class="col-md-12">
       <h2>検索結果</h2>
       <%= render 'list', posts: @posts %>
+      <%= paginate @posts %>
     </div>
   </div>
 </div>
