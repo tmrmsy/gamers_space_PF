@@ -10,7 +10,7 @@ class Admin::PostsController < ApplicationController
     end
   end
 
-   def show
+  def show
     @post = Post.find(params[:id])
     @post_tags = @post.tags
     @post_comment = PostComment.new

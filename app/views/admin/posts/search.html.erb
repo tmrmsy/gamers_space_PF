@@ -2,41 +2,7 @@
   <div class="row">
     <div class="col-md-12">
       <h2>検索結果</h2>
-
-      <%= form_tag(admin_search_path,:method => 'get') do %>
-        <%= text_field_tag :search %>
-        <%= submit_tag 'Search', :name => nil %>
-      <% end %>
-
-      <table class="table">
-        <thead>
-          <tr>
-            <th>作成日</th>
-            <th>タイトル</th>
-            <th>タグ</th>
-            <th>作成者</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @posts.each do |post| %>
-            <tr>
-              <td><%= post.created_at.strftime("%Y-%m-%d %H:%M") %></td>
-              <td><%= link_to post.title, admin_post_path(post) %></td>
-              <td>
-                <i class="fas fa-tag">
-                  <% post.tags.each do |tag| %>
-                    <%= link_to tag.name, posts_path(tag_id: tag.id) %>
-                  <% end %>
-                </i>
-              </td>
-              <td><%= link_to post.user.name, admin_user_path(post.user_id) %></td>
-              <td><%= link_to '削除', admin_post_path(post), method: :delete, class: 'btn btn-danger', "data-confirm" => "本当に削除しますか？" %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-      <%= paginate @posts %>
+      <%= render 'list', posts: @posts %>
     </div>
   </div>
 </div>

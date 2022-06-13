@@ -16,7 +16,7 @@ class Post < ApplicationRecord
 
   def self.search(search)
     return Post.all unless search
-    Post.where(['content LIKE ?', "%#{search}%"])
+    Post.where(['content LIKE ? or title LIKE ?', "%#{search}%", "%#{search}%"])
   end
 
   def save_tag(sent_tags)
