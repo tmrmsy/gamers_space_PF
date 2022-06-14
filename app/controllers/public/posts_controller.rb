@@ -15,6 +15,7 @@ class Public::PostsController < ApplicationController
       flash[:success] = "Submitted successfully."
       redirect_to post_path(post.id)
     else
+      flash[:danger] = "Submission Failure."
       redirect_to new_post_path
     end
   end
@@ -49,9 +50,10 @@ class Public::PostsController < ApplicationController
         relation.delete
       end
       post.save_tag(tag_list)
-      flash[:success] = "Submitted successfully."
+      flash[:success] = "Editing Success."
       redirect_to post_path(post)
     else
+      flash[:danger] = "Editing Failure."
       redirect_to edit_post_path(post)
     end
   end
@@ -69,7 +71,7 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :content, :user_id, :tag_list)
+    params.require(:post).permit(:title, :content, :user_id)
   end
 
   def ensure_user

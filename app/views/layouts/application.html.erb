@@ -51,8 +51,14 @@
     </header>
 
     <main class="mb-5 pb-5">
-      <% flash.each do |message_type, message| %>
-        <h5 class="text-center text-success"><%= message %></h5>
+      <% if flash[:success] %>
+        <% flash.each do |message_type, message| %>
+          <h5 class="text-center text-success"><%= message %></h5>
+        <% end %>
+      <% else %>
+        <% flash.each do |message_type, message| %>
+          <h5 class="text-center text-danger"><%= message %></h5>
+        <% end %>
       <% end %>
       <%= yield %>
     </main>
