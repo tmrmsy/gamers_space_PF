@@ -11,7 +11,7 @@
         </div>
 
         <div class="card-body">
-          <%= @post.content %>
+          <%= safe_join(@post.content.split("\n"),tag(:br)) %>
         </div>
 
         <div class="card-footer">
@@ -27,7 +27,7 @@
 
       <%= link_to '削除', admin_post_path(@post.id), method: :delete, class: 'btn btn-danger', "data-confirm" => "削除しますか？" %>
       <%= render '/template/comment', post: @post, post_comments: @post_comments %>
-      
+
       <%= paginate @post_comments %>
     </div>
   </div>

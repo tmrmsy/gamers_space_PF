@@ -9,7 +9,8 @@
           <span>　<%= @post.created_at.strftime("%Y-%m-%d %H:%M") %></span>
         </div>
         <div class="card-body">
-          <%= @post.content %>
+          <!-- コンテンツ表示(改行) -->
+          <%= safe_join(@post.content.split("\n"),tag(:br)) %>
         </div>
         <div class="card-footer">
           <i class="fas fa-tag">
@@ -19,7 +20,7 @@
               <% end %>
             <% end %>
           </i>
-
+          
           <% if user_signed_in? %>
             <% if @post.favorited_by?(current_user) %>
               <p>
