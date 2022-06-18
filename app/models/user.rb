@@ -14,7 +14,7 @@ class User < ApplicationRecord
   has_many :following_user, through: :follower, source: :followed
   has_many :follower_user, through: :followed, source: :follower
 
-  validates :name, uniqueness: true, presence: true
+  validates :name, presence: true, uniqueness: true, length: { minimum: 2, maximum: 15 }
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
