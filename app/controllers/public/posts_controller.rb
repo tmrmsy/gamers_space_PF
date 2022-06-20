@@ -44,9 +44,9 @@ class Public::PostsController < ApplicationController
   def update
     post = Post.find(params[:id])
     tag_list = params[:post][:name].split(',')
-    if post.update(post_params)
+    if post.update(post_params) #タグリスト更新
       old_relations = PostTag.where(post_id: post.id)
-      old_relations.each do |relation|
+      old_relations.each do |relation|  #保存されていたタグを一旦削除し、保存し直す
         relation.delete
       end
       post.save_tag(tag_list)
